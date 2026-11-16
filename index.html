@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080609">
-<title>Ryugashiki — TikTok HD Upload Method & Optimizer</title>
+<title>Ryugashiki — TikTok HD Upload Method</title>
 <style>
 :root{
   color-scheme:dark;
@@ -27,65 +27,44 @@ body{
   min-height:100vh;
 }
 .wrap{max-width:860px;margin:auto;padding:24px 16px 60px}
-
-/* Header */
 .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
 .brand{font-weight:900;font-size:19px;letter-spacing:.6px}
 .brand span{color:var(--red)}
 .tag{font-size:11px;font-weight:700;padding:6px 12px;border-radius:99px;background:#220e14;border:1px solid var(--line);color:#ff9eb0;text-transform:uppercase;letter-spacing:1px}
-
-/* Hero */
 .hero{text-align:center;margin-bottom:28px}
 .hero h1{font-size:clamp(26px,5.5vw,42px);line-height:1.15;margin:0 0 10px;background:linear-gradient(90deg,#fff,#ffb8c6 55%,var(--red));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p{color:var(--muted);max-width:560px;margin:auto;font-size:14px}
-
-/* Tabs */
 .tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;background:var(--panel);padding:6px;border-radius:14px;border:1px solid var(--line);margin-bottom:20px}
 .tab-btn{border:0;background:transparent;color:var(--muted);padding:11px;border-radius:10px;font-weight:700;font-size:13px;cursor:pointer;transition:.2s}
 .tab-btn.active{background:linear-gradient(135deg,var(--red),#a80d24);color:#fff;box-shadow:0 4px 15px #ed173644}
-
-/* Card */
 .card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 20px 60px #0009}
 .section{display:none}
 .section.active{display:block}
-
-/* Dropzone */
 .drop{border:2px dashed #5e2432;border-radius:16px;padding:32px 16px;text-align:center;background:var(--panel-2);cursor:pointer;transition:.2s}
 .drop:hover,.drop.over{border-color:var(--red);background:#24141d}
 .icon-box{width:50px;height:50px;border-radius:14px;background:#2e121b;color:var(--red);display:grid;place-items:center;margin:0 auto 12px;font-size:22px;font-weight:bold}
 .drop strong{display:block;font-size:16px}
 .drop span{display:block;font-size:12px;color:var(--muted);margin-top:4px}
-
 .file-meta{display:none;margin-top:14px;padding:12px 14px;background:#1d1522;border:1px solid var(--line);border-radius:12px;font-size:13px;color:#f5dce2}
-
-/* Form Grid */
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
 .field label{display:block;font-size:12px;font-weight:700;color:#e8d3d9;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
 .field select{width:100%;background:#0b080d;border:1px solid #45202b;border-radius:10px;padding:11px 12px;color:#fff;font:inherit;outline:none}
 .field select:focus{border-color:var(--red)}
 .hint{font-size:11px;color:var(--muted);margin-top:4px}
-
-/* Buttons */
 .actions{display:flex;gap:10px;margin-top:20px}
 .btn{flex:1;border:0;border-radius:12px;padding:13px 18px;font-weight:800;font-size:14px;cursor:pointer;color:#fff;background:linear-gradient(95deg,var(--red),#b30c25);transition:.15s}
 .btn:disabled{opacity:.4;cursor:not-allowed}
 .btn-sec{flex:0 0 auto;background:#211826;border:1px solid #452330;color:#e6d5da;padding:13px 18px;border-radius:12px;font-weight:700;cursor:pointer}
-
-/* Progress & Result */
 .prog-wrap{display:none;margin-top:20px}
 .prog-top{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
 .bar{height:8px;background:#241821;border-radius:99px;overflow:hidden}
 .bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--red),var(--cyan));transition:width .15s}
 .status{font-size:12px;color:var(--muted);margin-top:8px}
-
 .result-box{display:none;margin-top:18px;padding:16px;border-radius:14px;background:#0e241d;border:1px solid #1f5c46}
 .result-box p{margin:0 0 12px;font-size:13px;color:#b8f5dc}
 .dl-btn{display:inline-block;width:100%;text-align:center;padding:12px;background:var(--green);color:#05140d;font-weight:900;border-radius:10px;text-decoration:none}
-
 .preview-wrap{display:none;margin-top:16px}
 .preview-wrap video{width:100%;max-height:360px;border-radius:12px;background:#000;border:1px solid var(--line)}
-
-/* Method Checklist */
 .step-list{display:flex;flex-direction:column;gap:12px}
 .step-item{display:flex;gap:12px;align-items:flex-start;padding:14px;background:var(--panel-2);border:1px solid var(--line);border-radius:14px;cursor:pointer;transition:.2s}
 .step-item.done{border-color:#235c44;background:#0f1f19}
@@ -93,13 +72,9 @@ body{
 .step-title{font-weight:700;font-size:14px;margin-bottom:3px}
 .step-desc{font-size:12.5px;color:var(--muted);line-height:1.45}
 .badge-spec{display:inline-block;padding:2px 7px;background:#2b151e;color:#ff8fa3;border-radius:6px;font-size:11px;font-weight:700;margin-top:5px}
-
 .alert{margin-top:18px;padding:13px 15px;border-radius:12px;background:#18121c;border:1px solid #381e29;font-size:12px;color:var(--muted)}
 .alert b{color:#fff}
-
-@media(max-width:600px){
-  .grid{grid-template-columns:1fr}
-}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -115,14 +90,12 @@ body{
     <p>Kunci bitrate, tajamkan warna CC, dan ikuti protokol upload anti-pecah sebelum posting ke TikTok.</p>
   </div>
 
-  <!-- Navigasi Tab -->
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('optimizer', this)">1. Render & Kunci HD</button>
     <button class="tab-btn" onclick="switchTab('checklist', this)">2. Checklist Method Upload</button>
   </div>
 
   <main class="card">
-    <!-- TAB 1: VIDEO OPTIMIZER -->
     <div id="tab-optimizer" class="section active">
       <input type="file" id="fileInput" accept="video/mp4,video/quicktime,video/webm" hidden>
       
@@ -142,15 +115,14 @@ body{
             <option value="720">720p HD (Untuk Jaringan Lambat)</option>
             <option value="original">Pertahankan Resolusi Asli</option>
           </select>
-          <div class="hint">Video 2K/4K justru dikompres parah oleh TikTok.</div>
+          <div class="hint">Video di atas 1080p rawan dikompres TikTok.</div>
         </div>
 
         <div class="field">
           <label>Bitrate Encoding</label>
           <select id="bitrateSelect">
-            <option value="14000000" selected>14 Mbps (Extreme Sharpness)</option>
-            <option value="10000000">10 Mbps (High Quality)</option>
-            <option value="6000000">6 Mbps (Standar)</option>
+            <option value="12000000" selected>12 Mbps (Rekomendasi Stabil)</option>
+            <option value="8000000">8 Mbps (Aman untuk HP Kentang)</option>
           </select>
           <div class="hint">Menjaga partikel efek & transisi tetap tajam.</div>
         </div>
@@ -158,8 +130,7 @@ body{
         <div class="field">
           <label>Preset Warna & Ketajaman</label>
           <select id="filterSelect">
-            <option value="contrast(1.07) saturate(1.12) brightness(1.01)" selected>TikTok Vivid (Warna Keluar + Tajam)</option>
-            <option value="contrast(1.12) saturate(1.04)">AM / Gameplay Dark Contrast</option>
+            <option value="contrast(1.07) saturate(1.12)" selected>TikTok Vivid (Warna Keluar)</option>
             <option value="none">Bypass (Warna Asli)</option>
           </select>
         </div>
@@ -167,8 +138,8 @@ body{
         <div class="field">
           <label>Target Frame Rate</label>
           <select id="fpsSelect">
-            <option value="60" selected>60 FPS (Smooth Motion)</option>
-            <option value="30">30 FPS (Stabil)</option>
+            <option value="30" selected>30 FPS (Paling Stabil di HP)</option>
+            <option value="60">60 FPS (Mulus)</option>
           </select>
         </div>
       </div>
@@ -180,7 +151,7 @@ body{
 
       <div class="prog-wrap" id="progWrap">
         <div class="prog-top">
-          <span>Merender frame HD...</span>
+          <span id="progTitle">Merender frame HD...</span>
           <span id="pctLabel">0%</span>
         </div>
         <div class="bar"><div class="bar-fill" id="barFill"></div></div>
@@ -197,51 +168,25 @@ body{
       </div>
 
       <div class="alert">
-        <b>Info:</b> Rendering dilakukan langsung oleh chip HP kamu tanpa mengunggah video ke server luar. Jangan kunci layar HP saat proses berjalan.
+        <b>Tips Agar Tidak Macet:</b> Gunakan file video berformat <b>MP4</b> standar berdurasi pendek, dan pastikan menggunakan browser Google Chrome terbaru.
       </div>
     </div>
 
-    <!-- TAB 2: METHOD CHECKLIST -->
     <div id="tab-checklist" class="section">
       <div class="step-list">
         <label class="step-item" onclick="toggleCheck(this)">
           <input type="checkbox">
           <div>
             <div class="step-title">1. Matikan Penghemat Data TikTok</div>
-            <div class="step-desc">Masuk ke <b>Profil → Garis Tiga → Pengaturan dan Privasi → Penghemat Data</b>. Pastikan posisi <b>MATI (OFF)</b> agar TikTok tidak menurunkan resolusi saat upload.</div>
+            <div class="step-desc">Masuk ke Profil → Pengaturan dan Privasi → Penghemat Data. Pastikan posisi MATI (OFF).</div>
           </div>
         </label>
-
         <label class="step-item" onclick="toggleCheck(this)">
           <input type="checkbox">
           <div>
-            <div class="step-title">2. Kosongkan Cache Aplikasi</div>
-            <div class="step-desc">Di menu Pengaturan TikTok, pilih <b>Kosongkan Ruang → Bersihkan Cache</b> sebelum memilih video agar proses encoding berjalan ringan.</div>
-          </div>
-        </label>
-
-        <label class="step-item" onclick="toggleCheck(this)">
-          <input type="checkbox">
-          <div>
-            <div class="step-title">3. Wajib Aktifkan "Izinkan Unggahan Berkualitas Tinggi"</div>
-            <div class="step-desc">Setelah memilih video dan masuk ke halaman tulis Caption, scroll ke bawah lalu ketuk <b>Opsi Lainnya (More Options)</b> → Nyalakan <b>Izinkan unggahan berkualitas tinggi</b>.</div>
+            <div class="step-title">2. Wajib Aktifkan "Izinkan Unggahan Berkualitas Tinggi"</div>
+            <div class="step-desc">Di halaman tulis caption sebelum posting, pilih Opsi Lainnya → Nyalakan opsi unggahan berkualitas tinggi.</div>
             <span class="badge-spec">Kunci Utama HD</span>
-          </div>
-        </label>
-
-        <label class="step-item" onclick="toggleCheck(this)">
-          <input type="checkbox">
-          <div>
-            <div class="step-title">4. Jangan Edit Ulang di Dalam TikTok</div>
-            <div class="step-desc">Hindari menambahkan filter, stiker, atau efek bawaan TikTok setelah video dirender HD, karena TikTok akan melakukan <i>re-encode</i> ulang yang menurunkan bitrate.</div>
-          </div>
-        </label>
-
-        <label class="step-item" onclick="toggleCheck(this)">
-          <input type="checkbox">
-          <div>
-            <div class="step-title">5. Gunakan Koneksi Stabil & Tunggu 5 Menit</div>
-            <div class="step-desc">Jangan langsung menutup paksa (<i>force close</i>) aplikasi saat bar upload mencapai 100%. Setelah terposting, server TikTok butuh waktu 3–5 menit untuk memproses versi HD-nya.</div>
           </div>
         </label>
       </div>
@@ -259,9 +204,7 @@ function switchTab(tabName, btn) {
 
 function toggleCheck(el) {
   const cb = el.querySelector('input');
-  setTimeout(() => {
-    el.classList.toggle('done', cb.checked);
-  }, 10);
+  setTimeout(() => { el.classList.toggle('done', cb.checked); }, 10);
 }
 
 const fileInput = document.getElementById('fileInput');
@@ -294,7 +237,7 @@ fileInput.addEventListener('change', e => {
 
 function loadVideo(file) {
   if (!file.type.startsWith('video/')) {
-    alert('Pilih file video yang valid (MP4/MOV).');
+    alert('Pilih file video berformat MP4 yang valid!');
     return;
   }
   currentFile = file;
@@ -328,112 +271,123 @@ startBtn.addEventListener('click', async () => {
   previewWrap.style.display = 'none';
   barFill.style.width = '0%';
   pctLabel.textContent = '0%';
-  statusLabel.textContent = 'Membaca dimensi video...';
+  statusLabel.textContent = 'Membaca video...';
 
-  const video = document.createElement('video');
-  video.src = URL.createObjectURL(currentFile);
-  video.playsInline = true;
-  video.muted = false;
-
-  await new Promise(res => { video.onloadedmetadata = res; });
-
-  const targetRes = document.getElementById('resSelect').value;
-  let w = video.videoWidth;
-  let h = video.videoHeight;
-
-  if (targetRes !== 'original') {
-    const shortSide = parseInt(targetRes);
-    if (w < h) {
-      h = Math.round((h / w) * shortSide);
-      w = shortSide;
-    } else {
-      w = Math.round((w / h) * shortSide);
-      h = shortSide;
-    }
-  }
-
-  // Pastikan ukuran genap agar encoder hardware tidak gagal
-  w = w % 2 === 0 ? w : w + 1;
-  h = h % 2 === 0 ? h : h + 1;
-
-  const canvas = document.createElement('canvas');
-  canvas.width = w;
-  canvas.height = h;
-  const ctx = canvas.getContext('2d');
-
-  const fps = parseInt(document.getElementById('fpsSelect').value);
-  const bitrate = parseInt(document.getElementById('bitrateSelect').value);
-  const filter = document.getElementById('filterSelect').value;
-
-  const stream = canvas.captureStream(fps);
-
-  // Tangkap audio asli
   try {
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const src = audioCtx.createMediaElementSource(video);
-    const dst = audioCtx.createMediaStreamDestination();
-    src.connect(dst);
-    src.connect(audioCtx.destination);
-    dst.stream.getAudioTracks().forEach(t => stream.addTrack(t));
-  } catch (e) {
-    console.warn('Audio bypass:', e);
-  }
+    const video = document.createElement('video');
+    video.src = URL.createObjectURL(currentFile);
+    video.playsInline = true;
+    video.muted = false;
 
-  let mime = 'video/webm;codecs=vp9,opus';
-  if (MediaRecorder.isTypeSupported('video/mp4')) {
-    mime = 'video/mp4';
-  } else if (MediaRecorder.isTypeSupported('video/webm;codecs=h264')) {
-    mime = 'video/webm;codecs=h264';
-  } else if (!MediaRecorder.isTypeSupported(mime)) {
-    mime = 'video/webm';
-  }
+    await new Promise((res, rej) => {
+      video.onloadedmetadata = res;
+      video.onerror = () => rej(new Error('Gagal membaca metadata video. Pastikan format file MP4.'));
+    });
 
-  const recorder = new MediaRecorder(stream, {
-    mimeType: mime,
-    videoBitsPerSecond: bitrate
-  });
+    const targetRes = document.getElementById('resSelect').value;
+    let w = video.videoWidth;
+    let h = video.videoHeight;
 
-  const chunks = [];
-  recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
+    if (targetRes !== 'original') {
+      const shortSide = parseInt(targetRes);
+      if (w < h) {
+        h = Math.round((h / w) * shortSide);
+        w = shortSide;
+      } else {
+        w = Math.round((w / h) * shortSide);
+        h = shortSide;
+      }
+    }
 
-  recorder.onstop = () => {
-    const blob = new Blob(chunks, { type: mime });
-    const outUrl = URL.createObjectURL(blob);
-    const ext = mime.includes('mp4') ? 'mp4' : 'webm';
+    w = w % 2 === 0 ? w : w + 1;
+    h = h % 2 === 0 ? h : h + 1;
 
-    dlLink.href = outUrl;
-    dlLink.download = `Ryugashiki-HD-${Date.now()}.${ext}`;
+    const canvas = document.createElement('canvas');
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext('2d');
 
-    previewVideo.src = outUrl;
-    previewWrap.style.display = 'block';
-    resultBox.style.display = 'block';
+    const fps = parseInt(document.getElementById('fpsSelect').value);
+    const bitrate = parseInt(document.getElementById('bitrateSelect').value);
+    const filter = document.getElementById('filterSelect').value;
 
-    barFill.style.width = '100%';
-    pctLabel.textContent = '100%';
-    statusLabel.textContent = `Selesai! Output: ${w}x${h} @ ${fps}FPS`;
+    const stream = canvas.captureStream(fps);
+
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const src = audioCtx.createMediaElementSource(video);
+      const dst = audioCtx.createMediaStreamDestination();
+      src.connect(dst);
+      src.connect(audioCtx.destination);
+      dst.stream.getAudioTracks().forEach(t => stream.addTrack(t));
+    } catch (e) {
+      console.warn('Audio bypass warning:', e);
+    }
+
+    let mime = 'video/webm;codecs=vp9,opus';
+    if (MediaRecorder.isTypeSupported('video/mp4')) {
+      mime = 'video/mp4';
+    } else if (MediaRecorder.isTypeSupported('video/webm;codecs=h264')) {
+      mime = 'video/webm;codecs=h264';
+    } else if (!MediaRecorder.isTypeSupported(mime)) {
+      mime = 'video/webm';
+    }
+
+    const recorder = new MediaRecorder(stream, {
+      mimeType: mime,
+      videoBitsPerSecond: bitrate
+    });
+
+    const chunks = [];
+    recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
+
+    recorder.onstop = () => {
+      const blob = new Blob(chunks, { type: mime });
+      const outUrl = URL.createObjectURL(blob);
+      const ext = mime.includes('mp4') ? 'mp4' : 'webm';
+
+      dlLink.href = outUrl;
+      dlLink.download = `Ryugashiki-HD-${Date.now()}.${ext}`;
+
+      previewVideo.src = outUrl;
+      previewWrap.style.display = 'block';
+      resultBox.style.display = 'block';
+
+      barFill.style.width = '100%';
+      pctLabel.textContent = '100%';
+      statusLabel.textContent = `Selesai! Output: ${w}x${h} @ ${fps}FPS`;
+      startBtn.disabled = false;
+      resetBtn.disabled = false;
+    };
+
+    recorder.start();
+    video.play();
+    statusLabel.textContent = `Merender ${w}x${h}... Jangan tutup halaman.`;
+
+    function renderLoop() {
+      if (video.paused || video.ended) {
+        if (recorder.state === 'recording') recorder.stop();
+        return;
+      }
+      ctx.filter = filter;
+      ctx.drawImage(video, 0, 0, w, h);
+
+      if (video.duration) {
+        const pct = Math.min(99, Math.round((video.currentTime / video.duration) * 100));
+        barFill.style.width = pct + '%';
+        pctLabel.textContent = pct + '%';
+      }
+      requestAnimationFrame(renderLoop);
+    }
+
+    video.onplay = () => renderLoop();
+
+  } catch (err) {
+    alert('Terjadi kesalahan saat memproses video: ' + err.message);
     startBtn.disabled = false;
     resetBtn.disabled = false;
-  };
-
-  recorder.start();
-  video.play();
-  statusLabel.textContent = `Merender ${w}x${h} (${(bitrate/1000000)} Mbps)...`;
-
-  function renderLoop() {
-    if (video.paused || video.ended) {
-      if (recorder.state === 'recording') recorder.stop();
-      return;
-    }
-    ctx.filter = filter;
-    ctx.drawImage(video, 0, 0, w, h);
-
-    const pct = Math.min(99, Math.round((video.currentTime / video.duration) * 100));
-    barFill.style.width = pct + '%';
-    pctLabel.textContent = pct + '%';
-    requestAnimationFrame(renderLoop);
+    progWrap.style.display = 'none';
   }
-
-  video.onplay = () => renderLoop();
 });
 </script>
 
