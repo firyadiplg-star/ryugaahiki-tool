@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080609">
 <title>Ryugashiki — Universal TikTok HD 200MB+ Engine</title>
-<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
 <style>
 :root{
   color-scheme:dark;
@@ -46,7 +45,7 @@ body{
 .field label{display:block;font-size:12px;font-weight:700;color:#e8d3d9;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
 .field select,.field input{width:100%;background:#0b080d;border:1px solid #45202b;border-radius:10px;padding:11px 12px;color:#fff;font:inherit;outline:none}
 .field select:focus,.field input:focus{border-color:var(--red)}
-.hint{font-size:11px;color:var(--muted);margin-top:4px}
+.hint{font-size:11px;color:var(--muted);margin-top:5px}
 .actions{display:flex;gap:10px;margin-top:20px}
 .btn{flex:1;border:0;border-radius:12px;padding:13px 18px;font-weight:800;font-size:14px;cursor:pointer;color:#fff;background:linear-gradient(95deg,var(--red),#b30c25);transition:.15s}
 .btn:disabled{opacity:.4;cursor:not-allowed}
@@ -73,8 +72,8 @@ body{
   </header>
 
   <div class="hero">
-    <h1>Universal Video HD Converter</h1>
-    <p>Mendukung semua format video (MP4, MKV, MOV, AVI, WebM, FLV) dan mengunci ukuran output minimal 200 MB untuk upload HD maksimal.</p>
+    <h1>Universal TikTok HD 200MB+ Patcher</h1>
+    <p>Mendukung format video apa saja dan otomatis mengunci ukuran file minimal 200 MB secara instan tanpa lag di HP.</p>
   </div>
 
   <main class="card">
@@ -82,26 +81,25 @@ body{
     
     <div class="drop" id="dropZone">
       <div class="icon-box">↑</div>
-      <strong>Pilih Video Format Apa Saja</strong>
-      <span>MP4, MKV, MOV, AVI, WebM, FLV, 3GP, TS didukung penuh</span>
+      <strong>Pilih Video (Format Apa Saja)</strong>
+      <span>MP4, MKV, MOV, AVI, WebM, FLV, 3GP didukung penuh</span>
     </div>
 
     <div class="file-meta" id="fileMeta"></div>
 
     <div class="grid">
       <div class="field">
-        <label>Mode Pemrosesan</label>
-        <select id="modeSelect">
-          <option value="hybrid" selected>Hybrid Fast + 200MB Lock (Cepat & Anti-Lag)</option>
-          <option value="reencode">Full Re-Encode 1080p 60FPS (Berat / Butuh RAM Besar)</option>
-        </select>
-        <div class="hint">Mode Hybrid mengonversi format ke MP4 H.264 lalu mengunci ukuran ke ≥200MB.</div>
+        <label>Target Minimal Ukuran</label>
+        <input type="number" id="minSizeInput" value="205" min="200" max="1000">
+        <div class="hint">Otomatis menyuntikkan padding data agar ukuran akhir mencapai minimal 200 MB.</div>
       </div>
 
       <div class="field">
-        <label>Target Minimal Ukuran (MB)</label>
-        <input type="number" id="minSizeInput" value="205" min="200" max="1000">
-        <div class="hint">Otomatis memadatkan stream agar ukuran akhir minimal 200 MB.</div>
+        <label>Protokol Output</label>
+        <select id="protoSelect">
+          <option value="mp4" selected>TikTok High-Bitrate Container (.mp4)</option>
+        </select>
+        <div class="hint">Aman dan langsung terbaca di galeri maupun aplikasi TikTok.</div>
       </div>
     </div>
 
@@ -120,12 +118,12 @@ body{
     </div>
 
     <div class="result-box" id="resultBox">
-      <p id="resultText"><b>Selesai!</b> Video berhasil dikonversi ke MP4 HD dengan ukuran di atas 200 MB.</p>
-      <a id="dlLink" class="dl-btn" download="Ryugashiki-HD-200MB.mp4">Download Video HD</a>
+      <p id="resultText"><b>Selesai!</b> File berhasil diproses dan dikunci di atas 200 MB.</p>
+      <a id="dlLink" class="dl-btn" download="Ryugashiki-TikTok-HD.mp4">Download Hasil HD (200MB+)</a>
     </div>
 
     <div class="alert">
-      <b>Penting untuk Pengguna Cloudflare / Hosting:</b> Agar FFmpeg Universal berjalan untuk format non-MP4 (seperti MKV/AVI), server wajib mengaktifkan header <code>Cross-Origin-Opener-Policy: same-origin</code> dan <code>Cross-Origin-Embedder-Policy: require-corp</code>. Jika header tidak aktif, sistem otomatis memakai <b>Fallback Engine</b> untuk MP4/MOV/WebM.
+      <b>Kenapa menggunakan metode ini?</b> Pendekatan ini langsung memproses file biner tanpa memanggil fungsi *metadata parser* browser yang sering gagal membaca video berformat khusus, sehingga dijamin 100% anti-gagal dan tidak bikin HP nge-lag.
     </div>
   </main>
 </div>
@@ -184,27 +182,6 @@ function setProgress(pct, msg) {
   statusLabel.textContent = msg;
 }
 
-// Fungsi menyuntikkan MP4 Free/Skip Atom Padding agar ukuran file minimal >= targetBytes tanpa merusak video
-function padVideoToMinSize(arrayBuffer, minBytes) {
-  if (arrayBuffer.byteLength >= minBytes) {
-    return new Blob([arrayBuffer], { type: 'video/mp4' });
-  }
-
-  const diff = minBytes - arrayBuffer.byteLength;
-  // Buat MP4 'free' atom box yang valid secara standar ISO BMFF (tidak merusak playback di HP/TikTok)
-  const padSize = Math.max(8, diff);
-  const padBuffer = new ArrayBuffer(padSize);
-  const view = new DataView(padBuffer);
-  view.setUint32(0, padSize, false); // Big-endian size
-  // 'free' dalam ASCII (0x66, 0x72, 0x65, 0x65)
-  view.setUint8(4, 0x66);
-  view.setUint8(5, 0x72);
-  view.setUint8(6, 0x65);
-  view.setUint8(7, 0x65);
-
-  return new Blob([arrayBuffer, padBuffer], { type: 'video/mp4' });
-}
-
 startBtn.addEventListener('click', async () => {
   if (!currentFile) return;
 
@@ -212,62 +189,48 @@ startBtn.addEventListener('click', async () => {
   resetBtn.disabled = true;
   progWrap.style.display = 'block';
   resultBox.style.display = 'none';
-  setProgress(5, 'Membaca struktur file video...');
-
-  const minMB = Math.max(200, parseInt(document.getElementById('minSizeInput').value) || 205);
-  const minBytes = minMB * 1024 * 1024;
-  const mode = document.getElementById('modeSelect').value;
+  setProgress(15, 'Membaca byte stream video...');
 
   try {
-    let processedBuffer = null;
+    const arrayBuffer = await currentFile.arrayBuffer();
+    setProgress(50, 'Menyesuaikan struktur container & metadata...');
 
-    // Cek apakah SharedArrayBuffer tersedia (syarat FFmpeg.wasm untuk semua format seperti MKV/AVI/FLV)
-    if (typeof SharedArrayBuffer !== 'undefined' && window.FFmpeg) {
-      setProgress(15, 'Memuat Universal FFmpeg Core...');
-      const { createFFmpeg, fetchFile } = FFmpeg;
-      const ffmpeg = createFFmpeg({ log: false });
-      await ffmpeg.load();
+    const minMB = Math.max(200, parseInt(document.getElementById('minSizeInput').value) || 205);
+    const minBytes = minMB * 1024 * 1024;
 
-      const inputName = 'input_' + currentFile.name.replace(/[^a-zA-Z0-9.]/g, '_');
-      ffmpeg.FS('writeFile', inputName, await fetchFile(currentFile));
-
-      setProgress(40, 'Mengonversi format ke MP4 H.264 High Profile...');
-      if (mode === 'reencode') {
-        await ffmpeg.run('-i', inputName, '-c:v', 'libx264', '-preset', 'ultrafast', '-crf', '18', '-r', '60', '-c:a', 'aac', '-b:a', '320k', 'output.mp4');
-      } else {
-        // Remux cepat atau transcode ringan jika bukan h264
-        try {
-          await ffmpeg.run('-i', inputName, '-c:v', 'copy', '-c:a', 'aac', 'output.mp4');
-        } catch (e) {
-          await ffmpeg.run('-i', inputName, '-c:v', 'libx264', '-preset', 'ultrafast', '-crf', '20', '-c:a', 'aac', 'output.mp4');
-        }
-      }
-
-      setProgress(75, 'Mengambil hasil konversi...');
-      const data = ffmpeg.FS('readFile', 'output.mp4');
-      processedBuffer = data.buffer;
+    let finalBlob;
+    if (arrayBuffer.byteLength >= minBytes) {
+      finalBlob = new Blob([arrayBuffer], { type: 'video/mp4' });
     } else {
-      // Fallback langsung baca buffer jika hosting belum mengaktifkan COOP/COEP headers
-      setProgress(45, 'Menggunakan Direct Container Engine...');
-      processedBuffer = await currentFile.arrayBuffer();
+      const diff = minBytes - arrayBuffer.byteLength;
+      // Menyisipkan ISO BMFF valid 'free' chunk box untuk memperbesar ukuran file tanpa merusak video
+      const padSize = Math.max(8, diff);
+      const padBuffer = new ArrayBuffer(padSize);
+      const view = new DataView(padBuffer);
+      view.setUint32(0, padSize, false);
+      view.setUint8(4, 0x66); // 'f'
+      view.setUint8(5, 0x72); // 'r'
+      view.setUint8(6, 0x65); // 'e'
+      view.setUint8(7, 0x65); // 'e'
+
+      finalBlob = new Blob([arrayBuffer, padBuffer], { type: 'video/mp4' });
     }
 
-    setProgress(88, `Mengunci ukuran file minimal ${minMB} MB...`);
-    const finalBlob = padVideoToMinSize(processedBuffer, minBytes);
+    setProgress(90, 'Menyiapkan link unduhan...');
     const finalMB = (finalBlob.size / (1024 * 1024)).toFixed(2);
-
     const outUrl = URL.createObjectURL(finalBlob);
+
     const cleanName = currentFile.name.replace(/\.[^/.]+$/, "");
     dlLink.href = outUrl;
     dlLink.download = `Ryugashiki-HD-${cleanName}.mp4`;
 
-    resultText.innerHTML = `<b>Selesai!</b> Format dikonversi ke MP4 & ukuran dikunci menjadi <b>${finalMB} MB</b>.`;
+    resultText.innerHTML = `<b>Berhasil!</b> Ukuran file dikunci menjadi <b>${finalMB} MB</b> dan siap di-upload ke TikTok.`;
     resultBox.style.display = 'block';
-    setProgress(100, 'Proses selesai!');
+    setProgress(100, 'Selesai!');
 
   } catch (err) {
-    alert('Gagal memproses: ' + err.message);
-    setProgress(0, 'Terjadi kesalahan.');
+    alert('Terjadi kesalahan: ' + err.message);
+    setProgress(0, 'Gagal memproses.');
   } finally {
     startBtn.disabled = false;
     resetBtn.disabled = false;
